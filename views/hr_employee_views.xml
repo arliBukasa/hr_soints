@@ -23,7 +23,7 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='work_phone']" position="after">
                 <field name="qr_code"/>
-                <field name="qr_image" widget="image"/>
+                <field name="qr_image" widget="image" readonly="1"/>
             </xpath>
         </field>
     </record>
