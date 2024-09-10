@@ -21,7 +21,7 @@ class HrEmployee(models.Model):
     def generate_qrcode(self):
         for item in self:
 
-            url = "localhost:8067/employee?qr_code="+str(item.numero_matricule)
+            url = "https://apps.bzapps.ovh/employee?qr_code="+str(item.numero_matricule)
             qr = qrcode.QRCode(
             version=1,
             error_correction=qrcode.constants.ERROR_CORRECT_L,
