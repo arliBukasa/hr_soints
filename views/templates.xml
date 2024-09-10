@@ -1,39 +1,82 @@
 <odoo>
     <data>
-        <template id="employee_info" name="Employee Information">
-        <t t-call="website.layout">
-            <div class="container">
-                <h2>Informations sur l'employé</h2>
-                <table class="table table-bordered">
-                    <tr>
-                        <th>Noms</th>
-                        <td><t t-esc="employee.name"/></td>
-                    </tr>
-                    
-                    <tr>
-                        <th>Date de naissance</th>
-                        <td><t t-esc="employee.birthday"/></td>
-                    </tr>
-                    <tr>
-                        <th>Numéro matricule</th>
-                        <td><t t-esc="employee.numero_matricule"/></td>
-                    </tr>
-                    <tr>
-                        <th>Fonction</th>
-                        <td><t t-esc="employee.job_title"/></td>
-                    </tr>
-                </table>
+
+    <template id="employee_info" name="Employee Information">
+    <t t-call="website.layout">
+        <div class="container mt-5">
+            <div class="card shadow-lg p-4" style="max-width: 600px; margin: auto; background-color: #f9f9f9; border-radius: 15px;">
+                <!-- En-tête avec la photo de profil et les noms -->
+                <div class="d-flex justify-content-center align-items-center mb-4">
+                    <div class="profile-pic" style="position: relative;">
+                        <img t-if="employee.image" t-att-src="image_data_uri(employee.image)" alt="Profile Image" class="rounded-circle" style="width: 120px; height: 120px; object-fit: cover;"/>
+                        <div class="verified-badge" style="position: absolute; bottom: 10px; right: 10px; background-color: #28a745; color: white; border-radius: 50%; width: 30px; height: 30px; display: flex; justify-content: center; align-items: center;">
+                            <i class="fa fa-check" aria-hidden="true"></i> 
+                            <span>V</span>
+                        </div>
+                        
+                    </div>
+                </div>
+                
+                <!-- Noms de l'employé -->
+                <h2 class="text-center" style="font-weight: bold; font-family: Arial, sans-serif; color: #333;">
+                    <t t-esc="employee.name"/>
+                </h2>
+                
+                <!-- Table des informations de l'employé -->
+                <div class="table-responsive mt-4">
+                    <table class="table table-borderless text-center">
+                        <tbody>
+                            <tr>
+                                <th style="text-align: right; padding-right: 15px;">Date de naissance :</th>
+                                <td style="text-align: left;">
+                                    <t t-esc="employee.birthday"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th style="text-align: right; padding-right: 15px;">Numéro matricule :</th>
+                                <td style="text-align: left;">
+                                    <t t-esc="employee.numero_matricule"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th style="text-align: right; padding-right: 15px;">Fonction :</th>
+                                <td style="text-align: left;">
+                                    <t t-esc="employee.job_title"/>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <!-- Pied de page avec le QR Code -->
+                <div class="text-center mt-4">
+                    <!-- <img t-att-src="'https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl=' + employee.numero_matricule" alt="QR Code" class="img-fluid" style="max-width: 100px;"/> -->
+                </div>
             </div>
+        </div>
         </t>
     </template>
-    
+
     <template id="employee_not_found" name="Employee Not Found">
-        <t t-call="website.layout">
-            <div class="container">
-                <h2>Aucun employé trouvé</h2>
-                <p>Le QR code scanné ne correspond à aucun employé.</p>
+    <t t-call="website.layout">
+            <div class="container mt-5">
+                <div class="card shadow-lg p-4" style="max-width: 600px; margin: auto; background-color: #f9f9f9; border-radius: 15px;">
+                    <div class="text-center mb-4">
+                        <div class="badge badge-danger" style="font-size: 1.5rem; padding: 10px 20px; border-radius: 50px;">
+                            <i class="fa fa-times-circle" aria-hidden="true"></i> Échec
+                        </div>
+                    </div>
+                    <h2 class="text-center" style="font-weight: bold; font-family: Arial, sans-serif; color: #333;">
+                        Aucun employé trouvé
+                    </h2>
+                    <p class="text-center mt-3" style="font-family: Arial, sans-serif; color: #666;">
+                        Le QR code scanné ne correspond à aucun employé.<br/>
+                        Veuillez vérifier auprès de l'employeur si l'agent est toujours sous contrat!
+                    </p>
+                </div>
             </div>
         </t>
     </template>
+
     </data>
 </odoo>
