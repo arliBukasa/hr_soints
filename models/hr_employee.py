@@ -21,7 +21,7 @@ class HrEmployee(models.Model):
     def generate_qrcode(self):
         for item in self:
 
-            url = str(item.numero_matricule)
+            url = "localhost:8067/employee?qr_code="+str(item.numero_matricule)
             qr = qrcode.QRCode(
             version=1,
             error_correction=qrcode.constants.ERROR_CORRECT_L,
@@ -34,7 +34,7 @@ class HrEmployee(models.Model):
             temp = BytesIO()
             img.save(temp, format="PNG")
             self.write({'qr_image':base64.b64encode(temp.getvalue()),
-                        'qr_code':url})
+                        'qr_code':str(item.numero_matricule)})
     
     @api.model
     def create(self, values):

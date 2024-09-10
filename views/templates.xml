@@ -1,22 +1,39 @@
 <odoo>
     <data>
-        <!-- <template id="listing"> -->
-        <!--   <ul> -->
-        <!--     <li t-foreach="objects" t-as="object"> -->
-        <!--       <a t-attf-href="#{ root }/objects/#{ object.id }"> -->
-        <!--         <t t-esc="object.display_name"/> -->
-        <!--       </a> -->
-        <!--     </li> -->
-        <!--   </ul> -->
-        <!-- </template> -->
-        <!-- <template id="object"> -->
-        <!--   <h1><t t-esc="object.display_name"/></h1> -->
-        <!--   <dl> -->
-        <!--     <t t-foreach="object._fields" t-as="field"> -->
-        <!--       <dt><t t-esc="field"/></dt> -->
-        <!--       <dd><t t-esc="object[field]"/></dd> -->
-        <!--     </t> -->
-        <!--   </dl> -->
-        <!-- </template> -->
+        <template id="employee_info" name="Employee Information">
+        <t t-call="website.layout">
+            <div class="container">
+                <h2>Informations sur l'employé</h2>
+                <table class="table table-bordered">
+                    <tr>
+                        <th>Noms</th>
+                        <td><t t-esc="employee.name"/></td>
+                    </tr>
+                    
+                    <tr>
+                        <th>Date de naissance</th>
+                        <td><t t-esc="employee.birthday"/></td>
+                    </tr>
+                    <tr>
+                        <th>Numéro matricule</th>
+                        <td><t t-esc="employee.numero_matricule"/></td>
+                    </tr>
+                    <tr>
+                        <th>Fonction</th>
+                        <td><t t-esc="employee.job_title"/></td>
+                    </tr>
+                </table>
+            </div>
+        </t>
+    </template>
+    
+    <template id="employee_not_found" name="Employee Not Found">
+        <t t-call="website.layout">
+            <div class="container">
+                <h2>Aucun employé trouvé</h2>
+                <p>Le QR code scanné ne correspond à aucun employé.</p>
+            </div>
+        </t>
+    </template>
     </data>
 </odoo>
