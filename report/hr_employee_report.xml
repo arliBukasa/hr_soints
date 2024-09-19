@@ -44,17 +44,13 @@
                                 <tr height="40%">
                                 </tr>
 
-                                <tr>
-
-                                                                     
+                                <tr>                                        
                                     <td>
                                         <span style="font-size: 11px; font-family: Arial, sans-serif;font-weight: bold;">PRENOM :</span>
                                     </td>
                                     <td>
-                                        <span t-esc="doc.name" style="font-size: 11px; font-family: Arial, sans-serif;font-weight: bold;"/>
+                                        <span t-if="doc.prenoms" t-esc="doc.prenoms" style="font-size: 11px; font-family: Arial, sans-serif;font-weight: bold;"/>
                                     </td>
-
-
                                 </tr>
                                 <tr>
 
@@ -63,7 +59,7 @@
                                         <span style="font-size: 11px; font-family: Arial, sans-serif;font-weight: bold;">NOM :</span>
                                     </td>
                                     <td>
-                                        <span t-esc="doc.name" style="font-size: 11px; font-family: Arial, sans-serif;font-weight: bold;"/>
+                                        <span t-if="doc.noms" t-esc="doc.noms" style="font-size: 11px; font-family: Arial, sans-serif;font-weight: bold;"/>
                                     </td>
 
  
@@ -75,7 +71,7 @@
                                         <span style="font-size: 11px; font-family: Arial, sans-serif;font-weight: bold;">POSTNOM :</span>
                                     </td>
                                     <td>
-                                        <span t-esc="doc.name" style="font-size: 11px; font-family: Arial, sans-serif;font-weight: bold;"/>
+                                        <span t-if="doc.postnoms" t-esc="doc.postnoms" style="font-size: 11px; font-family: Arial, sans-serif;font-weight: bold;"/>
                                     </td>
         
         
@@ -99,14 +95,12 @@
                                         <span style="font-size: 11px; font-family: Arial, sans-serif;font-weight: bold;">NOM DU RESPONSABLE :</span>
                                     </td>
                                     <td>
-                                        <span t-esc="doc.name" style="font-size: 11px; font-family: Arial, sans-serif;font-weight: bold;"/>
+                                        <span style="font-size: 11px; font-family: Arial, sans-serif;font-weight: bold;">AGENT</span>
                                     </td>
 
 
                                 </tr>
-                                <tr>
-
-
+                                <tr t-if="doc.company_id.name == 'Head Office'">
                                     <td>
                                         <span style="font-size: 11px; font-family: Arial, sans-serif;font-weight: bold;">FONCTION :</span>
                                     </td>
@@ -116,7 +110,7 @@
 
 
                                 </tr>
-                                <tr>
+                                <tr t-if="doc.company_id.name == 'Head Office'" >
  
  
                                     <td>
@@ -138,12 +132,14 @@
                                
 
                             </table>
-
                         </div>
                          <!-- Troisième colonne avec l'image -->
                         <div style="width: 20%; display: flex; justify-content: center; align-items: center;float:right;margin-right:20px;border:solid:">
                             <!-- Image de gauche -->
                             <img t-if="doc.image" t-att-src="image_data_uri(doc.image)" alt="Image gauche" style="max-width: 100%; height: auto;margin-top:100px;margin-right:10px;" />
+                            <div style="width: 100%;height: auto;margin-top:25px;">
+                                <span t-esc="doc.department_id.name" style="font-size: 11px; font-family: Arial, sans-serif;font-weight: bold;"/>/ <span style="font-size: 11px; font-family: Arial, sans-serif;font-weight: bold;">BENSIZWE</span>
+                            </div>
                         </div>
 
                         
